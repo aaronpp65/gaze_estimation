@@ -7,7 +7,7 @@ Estimate whether the person is slooking to the ```left```, ```right``` or ```cen
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ```
-git clone https://github.com/aaronpp65/Visual-Relationshiop-Detection-Annotation-tool.git
+git clone git@github.com:aaronpp65/gaze_estimation.git
 ```
 
 ### Prerequisites
@@ -58,7 +58,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 * **Aaron Peter** - *Initial work* - [aaronpp65](https://github.com/aaronpp65)
 
 
-See also the list of [contributors](https://github.com/aaronpp65/Visual-Relationshiop-Detection-Annotation-tool/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/aaronpp65/gaze_estimation/contributors) who participated in this project.
 
 ## License
 
