@@ -3,7 +3,7 @@ from modules.utils import get_centroid, ratio
 
 class Eye():
     """
-    class to extract the eye, iris and centroid from face mesh points and calulate position of pupil in the eye
+    Class to extract the eye, iris and centroid from face mesh points and calulate position of pupil in the eye using ratios
     """
 
     def __init__(self,mesh_points):
@@ -22,7 +22,9 @@ class Eye():
     def calc_ratio(self):
         
         """
-        Calculate the positioning of iris with respect to the eye(left and right) using ratios
+        Calculate the positioning of iris with respect to the eye(left and right most points of eye) using ratios
+        Return:
+            return the average of both eyes ratio and their respective pupil positions
         """
         left_centroid = get_centroid(self.left_iris)
         left_ratio = ratio(self.left_eye[0],left_centroid, self.left_eye[8])

@@ -1,4 +1,5 @@
 import base64
+import json
 import cv2
 import math
 from imageio import imread
@@ -27,7 +28,7 @@ def distance(A,B):
 
 def ratio(p1, centroid, p2):
     """
-    Calculates ratio of point "centroid" dividing line  p1 to p2
+    Calculates ratio of the point "centroid" dividing line  p1 to p2
         
     """
     dist_l = distance(p1, centroid)
@@ -36,7 +37,7 @@ def ratio(p1, centroid, p2):
 
 def draw(frame, left_centroid, right_centroid, gaze):
     """
-    Annotating the image for display
+    Annotating the image for display and return it
     """
     cv2.circle(frame, (int(left_centroid[0]), int(left_centroid[1])), 3, (255, 0, 0), -1)
     cv2.circle(frame, (int(right_centroid[0]), int(right_centroid[1])), 3, (255, 0, 0), -1)
@@ -49,6 +50,10 @@ def draw(frame, left_centroid, right_centroid, gaze):
 def get_image(url):
     """
     Download an image and convert it for cv2
+    Arguments:
+        url (string) : image url
+    Returns
+        frame : returns image
     """
     try:
         response = requests.get(url)
@@ -67,5 +72,20 @@ def get_image(url):
     frame = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
     return frame
+
+
+def calc_gaze(ratio):
+    config = json.load(open('config.json',))
+    threshold = config['threshold']
+    if(abs(ratio)< threshold):
+        return "center"
+    elif(ratio<0):
+        return "left"
+    else:
+        return "right"
+
+if __name__ == '__main__':
+    calc_gaze(10,20)
+
 
 

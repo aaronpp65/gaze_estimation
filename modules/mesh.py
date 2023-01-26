@@ -13,7 +13,6 @@ class Mesh():
                             min_detection_confidence=min_detection_confidence)
 
     def get_ladmarks(self, frame):
-        # image = cv2.imread(frame)
         frame.flags.writeable = True
         img_h, img_w = frame.shape[:2]
         # Convert the BGR image to RGB before processing.

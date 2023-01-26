@@ -3,10 +3,8 @@ import uvicorn
 from fastapi import FastAPI
 from modules.inf_image import ImageGaze, ImageGazeQueryModel
 
-config = json.load(open('config.json',))
-threshold = config['threshold']
 app = FastAPI()
-model = ImageGaze(threshold)
+model = ImageGaze()
 
 @app.post('/predict')
 def predict(data: ImageGazeQueryModel):

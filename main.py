@@ -1,7 +1,7 @@
 import math
 from modules.mesh import Mesh
 from modules.eye import Eye
-from modules.utils import draw
+from modules.utils import draw, calc_gaze
 import numpy as np
 import json
 import cv2
@@ -12,7 +12,6 @@ import os
 if __name__ == '__main__':
     
     config = json.load(open('config.json',))
-    threshold = config['threshold']
     camera = config['camera']
     # callibration 
     dist = np.array(config['dist'])
@@ -46,12 +45,7 @@ if __name__ == '__main__':
         ratio, left_centroid, right_centroid = eye.calc_ratio()
 
 
-        if(abs(ratio)<threshold):
-            gaze = "center"
-        elif(ratio<0):
-            gaze ="left"
-        else:
-            gaze ="right"
+        gaze = calc_gaze(ratio)
 
         # annotate the image and display
         frame = draw(annotated_image, left_centroid, right_centroid, gaze)

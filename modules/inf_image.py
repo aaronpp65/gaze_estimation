@@ -1,6 +1,6 @@
 from modules.mesh import Mesh
 from modules.eye import Eye
-from modules.utils import  get_image
+from modules.utils import  get_image, calc_gaze
 from imageio import imread
 from pydantic import BaseModel
 
@@ -11,9 +11,6 @@ class ImageGaze:
     """
     Class to run inference on a single image
     """
-    def __init__(self,threshold):
-        self.threshold = threshold
-
 
     def get_gaze(self,url):
 
@@ -33,12 +30,16 @@ class ImageGaze:
 
         ratio, left_centroid, right_centroid = eye.calc_ratio()
 
-        if(abs(ratio)<self.threshold):
-            gaze = "center"
-        elif(ratio<0):
-            gaze ="right"
-        else:
-            gaze ="left"
+        gaze = calc_gaze(ratio)
+
         return gaze
+
+        # if(abs(ratio)<self.threshold):
+        #     gaze = "center"
+        # elif(ratio<0):
+        #     gaze ="right"
+        # else:
+        #     gaze ="left"
+        # return gaze
 
 
