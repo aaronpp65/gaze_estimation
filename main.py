@@ -12,11 +12,13 @@ import os
 if __name__ == '__main__':
     
     config = json.load(open('config.json',))
+    threshold = config['threshold']
+    camera = config['camera']
     # callibration 
     dist = np.array(config['dist'])
     mtx = np.array(config['mtx'] )
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(camera)
     face_mesh = Mesh(True, 1, True, 0.5)
 
     while cap.isOpened():
@@ -44,7 +46,7 @@ if __name__ == '__main__':
         ratio, left_centroid, right_centroid = eye.calc_ratio()
 
 
-        if(abs(ratio)<0.20):
+        if(abs(ratio)<threshold):
             gaze = "center"
         elif(ratio<0):
             gaze ="left"

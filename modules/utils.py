@@ -50,8 +50,13 @@ def get_image(url):
     """
     Download an image and convert it for cv2
     """
+    try:
+        response = requests.get(url)
+    except:
+        return None
 
-    data = base64.b64encode(requests.get(url).content)
+
+    data = base64.b64encode(response.content)
     b64_string = data.decode()
 
     # reconstruct image as an numpy array

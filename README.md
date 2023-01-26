@@ -1,6 +1,6 @@
 # Gaze estimation
 
-Estimate whether the person is slooking to the ```left```, ```right``` or ```center``` .
+Estimate whether the person is looking to the ```left```, ```right``` or ```center``` .
 
 ## Getting Started
 
@@ -34,7 +34,7 @@ To perform gaze estimation on a single image,
 
 ```
 from modules.inf_image import ImageGaze
-model = ImageGaze()
+model = ImageGaze(threshold)
 gaze = model.get_gaze(image_url)
 ```
 Api for gaze estimation on a single image can be run using ```python api.py``` 

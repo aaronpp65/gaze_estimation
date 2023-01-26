@@ -11,6 +11,9 @@ class ImageGaze:
     """
     Class to run inference on a single image
     """
+    def __init__(self,threshold):
+        self.threshold = threshold
+
 
     def get_gaze(self,url):
 
@@ -18,7 +21,11 @@ class ImageGaze:
 
         frame = get_image(url)
 
+        if frame is None:
+            return "Invalid url"
+
         mesh_points = face_mesh.get_ladmarks(frame)
+
         if mesh_points is None:
             return "No face detected"
 
@@ -26,7 +33,7 @@ class ImageGaze:
 
         ratio, left_centroid, right_centroid = eye.calc_ratio()
 
-        if(abs(ratio)<0.20):
+        if(abs(ratio)<self.threshold):
             gaze = "center"
         elif(ratio<0):
             gaze ="right"
