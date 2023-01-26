@@ -14,6 +14,8 @@ Docker image for gaze estimation api is available at
 
 ```
 sudo docker pull aaronpp65/gaze_estimation:v11
+sudo docker run --name gaze_estimation -p 80:80 aaronpp65/gaze_estimation:v11
+
 ```
 
 ### Prerequisites
@@ -44,15 +46,6 @@ model = ImageGaze()
 gaze = model.get_gaze(image_url)
 ```
 Api for gaze estimation on a single image can be run using ```python api.py``` 
-
-To build and run docker image,
-
-```
-sudo docker build -t gaze:v10 .
-sudo docker run --name gaze_estimation -p 80:80 gaze:v10
-```
-
-
 
 
 ## Contributing
