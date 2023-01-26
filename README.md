@@ -34,7 +34,7 @@ To perform gaze estimation on a single image,
 
 ```
 from modules.inf_image import ImageGaze
-model = ImageGaze(threshold)
+model = ImageGaze()
 gaze = model.get_gaze(image_url)
 ```
 Api for gaze estimation on a single image can be run using ```python api.py``` 
